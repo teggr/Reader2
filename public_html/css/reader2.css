@@ -29,25 +29,29 @@ ul.feeds li {
 	border-bottom: thin solid;
 }
 
-ul.feed {
+ul.items {
 	margin-left: 0;
 }
 
-ul.feed li {
+ul.items li {
 	list-style: none;
 	border-bottom: thin solid;
 }
 
-.feed-star {
+.item-star {
 	float:left;
 }
 
-.feed-text {
+.item-text {
 	margin-left:16px;
 }
 
-.feed-text p {
+.item-text p {
 	margin-bottom: 0;
+}
+
+img.loading {
+	max-width: 16px;
 }
 
 @media ( max-width : 979px) {
