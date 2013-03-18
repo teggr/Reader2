@@ -2,7 +2,8 @@
 	{
 		"id" : "all-items",
 		"title" : "All items",
-		"image" : "icon-folder-open"
+		"image" : "icon-folder-open",
+		"count" : "2"
 	},
 	{
 		"id" : "read-items",
@@ -21,6 +22,7 @@
 	{
 		"id" : "the-verge-all-posts",
 		"title" : "The Verge - All Posts",
-		"image" : "icon-list-alt"
+		"image" : "icon-list-alt",
+		"count" : "2"
 	}
 ]

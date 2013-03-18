@@ -8,6 +8,10 @@ img {
 	width: 100%;
 }
 
+.navbar {
+	margin-bottom: 0px;
+}
+
 .navbar-fixed-top .container {
 	width: 100%;
 }
@@ -27,6 +31,20 @@ ul.feeds {
 ul.feeds li {
 	list-style: none;
 	border-bottom: thin solid;
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+
+ul.feeds li.unread {
+	font-weight: bold;
+}
+
+.feed-icon {
+	padding: 0 2px 0 5px;
+}
+
+.count {
+	margin-right: 5px;
 }
 
 ul.items {

@@ -43,16 +43,21 @@
 		template : _.template($("#feed-template").html()),
 		render : function() {
 			this.$el.html(this.template(this.model.toJSON()));
+			if(this.model.get("count") > 0) {
+				this.$el.addClass("unread");
+			}
 			return this;
 		}
 	});
 
 	var FeedListView = Backbone.View.extend({
 		el : $(".feeds"),
+		template : _.template($("#loading-template").html()),
 		initialize : function() {
 			this.collection.on("reset", this.onReset, this);
 		},
 		render : function() {
+			this.$el.html(this.template({}));
 			return this;
 		},
 		onReset : function() {

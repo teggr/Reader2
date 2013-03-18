@@ -63,8 +63,10 @@
     <!-- templates -->
     
     <script type="text/template" id="feed-template">
-		<a href="#feeds/<%= id %>"><i class="<%= image %>"></i> <%= title %></a>
-		<span class="count pull-right"><%= count %></span>
+		<div>
+			<a href="#feeds/<%= id %>"><span class="feed-icon"><i class="<%= image %>"></i></span> <%= title %></a>
+			<span class="count pull-right"><%= count %></span>
+		</div>
 	</script>
 	
 	<script type="text/template" id="feed-item-template">
