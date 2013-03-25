@@ -54,32 +54,14 @@
     
     <di id="items" class="container hidden">
 
-     	<ul class="items">
+     	<ul >
 
      	</ul>
      
     </div> <!-- /feed	 -->
 
     <!-- templates -->
-    
-    <script type="text/template" id="feed-template">
-		<div>
-			<a href="#feeds/<%= id %>"><span class="feed-icon"><i class="<%= image %>"></i></span> <%= title %></a>
-			<span class="count pull-right"><%= count %></span>
-		</div>
-	</script>
-	
-	<script type="text/template" id="feed-item-template">
-		<% if(starred) { %>
-  			<div class="item-star"><a class="unstar" href="#unstar"><i class="icon-star"></i></a></div>
-   		<% } else { %>
-			<div class="item-star"><a class="star" href="#star"><i class="icon-star-empty"></i></a></div>
-    	<% } %>
-		<div class="item-text">
-			<p><span class="item-title"><%= title %></span><span class="item-name"> - <%= feed.title %></span></p>
-	   		<p><%= snippet %></p>
-   		</div>
-	</script>	
+
 	
 	<script type="text/template" id="full-feed-item-template">
 		<div class="item-header">

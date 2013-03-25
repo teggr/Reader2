@@ -1,12 +1,11 @@
 body {
-	font-size: 100%;
+	font-size: 87.5%;
+	padding-top: 41px;
 }
 
 img {
 	width: 100%;
 }
-
-
 
 .navbar {
 	margin-bottom: 0px;
@@ -20,8 +19,8 @@ img {
 	margin-left: 0;
 }
 
-.navbar .title {
-	padding: 10px 90px 10px;
+.navbar .title p {
+	float: left;
 	margin: 0;
 	font-size: 1.25em;
 	color: #999;
@@ -39,12 +38,16 @@ img {
 }
 
 header {
-	font-size: 0.875em;
+	
 }
 
 footer p {
 	text-align: center;
 	font-size: 0.75em;
+}
+
+.with-icon>li>a {
+	padding: 3px 10px;
 }
 
 /* ---- FEEDS PAGE ---- */
@@ -57,7 +60,6 @@ footer p {
 
 ul.feeds {
 	margin-left: 0;
-	font-size: 0.875em;
 }
 
 ul.feeds li {
@@ -80,6 +82,8 @@ ul.feeds li.unread {
 	margin-right: 5px;
 }
 
+/* ---- FEED PAGE ---- */
+
 ul.items {
 	margin-left: 0;
 }
@@ -93,6 +97,14 @@ ul.items li {
 	float:left;
 }
 
+.feed-source {
+	font-size: 0.92857142857143em;
+}
+
+.snippet {
+	font-size: 0.92857142857143em;
+}
+
 .item-text {
 	margin-left:16px;
 }
@@ -103,6 +115,29 @@ ul.items li {
 
 img.loading {
 	max-width: 16px;
+}
+
+.load-more div {
+	margin-left:16px;
+}
+
+ul.items li.load-more {
+	border-bottom: none;
+}
+
+.load-more p {
+	margin-top:4px;
+	margin-bottom:4px;
+}
+
+.list-action {
+	float:right;
+	margin-right: 4px;
+}
+
+form.search {
+	margin: 8px 0 8px;
+	padding-left: 4px;
 }
 
 /* ---- SETTINGS PAGE ---- */
@@ -120,6 +155,9 @@ img.loading {
 	.navbar .brand {
 		padding: 10px 20px 10px;
 		margin: 0;
+	}
+	body {
+		padding-top: 0;
 	}
 }
 
