@@ -1,12 +1,12 @@
+body {
+	font-size: 100%;
+}
+
 img {
 	width: 100%;
 }
 
-.container {
-	margin-left: 0;
-	margin-right: 0;
-	width: 100%;
-}
+
 
 .navbar {
 	margin-bottom: 0px;
@@ -20,12 +20,44 @@ img {
 	margin-left: 0;
 }
 
+.navbar .title {
+	padding: 10px 90px 10px;
+	margin: 0;
+	font-size: 1.25em;
+	color: #999;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+	text-align:center;
+}
+
+.dropdown-menu>li>hr {
+	margin-top: 1px;
+	margin-bottom: 1px;
+}
+
 .icon-blank {
 	width: 16px;
 }
 
+header {
+	font-size: 0.875em;
+}
+
+footer p {
+	text-align: center;
+	font-size: 0.75em;
+}
+
+/* ---- FEEDS PAGE ---- */
+
+#feeds.container {
+	margin-left: 0;
+	margin-right: 0;
+	width: 100%;
+}
+
 ul.feeds {
 	margin-left: 0;
+	font-size: 0.875em;
 }
 
 ul.feeds li {
@@ -35,12 +67,13 @@ ul.feeds li {
 	padding-bottom: 8px;
 }
 
-ul.feeds li.unread {
-	font-weight: bold;
+ul.feeds li i {
+	margin-right: 4px;
+	margin-left: 4px;
 }
 
-.feed-icon {
-	padding: 0 2px 0 5px;
+ul.feeds li.unread {
+	font-weight: bold;
 }
 
 .count {
@@ -70,6 +103,14 @@ ul.items li {
 
 img.loading {
 	max-width: 16px;
+}
+
+/* ---- SETTINGS PAGE ---- */
+
+#settings.container {
+	margin-left: 4px;
+	margin-right: 4px;
+	width: 100%;
 }
 
 @media ( max-width : 979px) {
