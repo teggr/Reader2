@@ -1,0 +1,22 @@
+<div id="feed" class="container">
+
+	<ul class="items">
+		<li ng-repeat="item in items">
+			<div class="item-star"><a class="star" href="#star"><i class="icon-star-empty"></i></a></div>
+			<div class="item-text">
+				<p><strong>{{ item.title }}</strong><span class="feed-source"> - {{ item.feed.title }}</span></p>
+		   		<p class="snippet">{{ item.snippet }}</p>
+	   		</div>
+		</li>
+		<li class="load-more">
+  			<div>
+  				<p><a href="feed-more.html"><strong>Load more items...</strong></a></p>
+  				<p>more than 15 items</p>
+  			</div>
+		</li>
+	</ul>
+	<p class="list-action">
+		<a href="#">Mark these items are read</a>
+	</p>
+
+</div>

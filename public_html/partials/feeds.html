@@ -1,0 +1,14 @@
+<div id="feeds" class="container">
+
+	<ul class="feeds">
+		<li ng-show="{{ feeds.length == 0 }}">
+			There are no new items
+		</li>
+		<li ng-repeat="feed in feeds">
+			<a href="#/feeds/{{ feed.id }}"><i class="{{ feed.image }}"></i>{{ feed.title }}</a> 
+			<span class="count pull-right">{{ feed.count }}</span>
+		</li>
+	</ul>
+
+</div>
+<!-- /feeds -->
