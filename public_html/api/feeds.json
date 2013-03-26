@@ -7,8 +7,7 @@
 	},
 	{
 		"id" : "read-items",
-		"title" : "Read items",
-		"image" : "icon-blank"
+		"title" : "Read items"
 	},
 	{
 		"id" : "starred-items",
