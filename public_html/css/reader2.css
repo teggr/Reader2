@@ -93,6 +93,10 @@ ul.items li {
 	border-bottom: thin solid;
 }
 
+.read.item-collapsed {
+	background-color: #eee;
+}
+
 .item-star {
 	float:left;
 }
@@ -167,7 +171,7 @@ form.search {
 }
 
 .item-footer .checkbox input[type="checkbox"] {
-float: none;
+	float: none;
 }
 
 /* ---- SETTINGS PAGE ---- */

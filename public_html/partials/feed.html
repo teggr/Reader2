@@ -1,22 +1,68 @@
 <div id="feed" class="container">
 
 	<ul class="items">
-		<li ng-repeat="item in items">
-			<div class="item-star"><a class="star" href="#star"><i class="icon-star-empty"></i></a></div>
-			<div class="item-text">
-				<p><strong>{{ item.title }}</strong><span class="feed-source"> - {{ item.feed.title }}</span></p>
-		   		<p class="snippet">{{ item.snippet }}</p>
+		<li ng-repeat="item in items" scroll-if="item.expanded" >
+			<div ng-class="{ read : item.read }" class="item-collapsed" ng-show="!item.expanded" ng-click="expand($event,item)">
+				<div class="item-star">
+					<a class="star" href="#star" ng-click="toggleStar($event,item)">
+						<i ng-class='{ "icon-star-empty" : !item.starred, "icon-star" : item.starred }'></i>
+					</a>
+				</div>
+				<div class="item-text">
+					<p><strong>{{ item.title }}</strong><span class="feed-source"> - {{ item.feed.title }}</span></p>
+			   		<p class="snippet">{{ item.snippet }}</p>
+		   		</div>
+	   		</div>
+	   		<div ng-class="{ read : item.read }" class="item-expanded" ng-show="item.expanded">
+	   			<div class="item-header"
+					<a class="pull-left" href="#collapse" ng-click="collapse($event,item)"><i class="icon-align-justify"></i> Collapse</a>
+					<a ng-show="!$last" class="pull-right" href="#next" ng-click="nextItem($event,item,$index)"><i class="icon-arrow-down"></i> Next item</a>
+					<div class="clearfix"></div>
+				</div>
+				<div class="item-title">
+					<div class="item-star"><a class="star" href="#star" ng-click="toggleStar($event,item)">
+						<i ng-class='{ "icon-star-empty" : !item.starred, "icon-star" : item.starred }'></i></a>
+					</div>
+					<div class="item-text">
+						<p><strong>{{ item.title }}</strong><span class="feed-source"> - {{ item.feed.title }}</span></p>
+				   		<p class="author">by {{ item.author }} on {{ item.publishDate }}</p>
+			   		</div>
+				</div>   
+				<div class="item-main">
+					<div class="leading-image">
+						<img alt="lead image" src="img/2012-09-11yerbaiphone5_large_verge_medium_landscape.jpg"> 
+					</div>
+					<div class="item-content" ng-bind-html-unsafe="item.content">
+					</div>
+				</div>  
+				<div class="item-footer">
+					<div class="item-footer">
+						<a class="btn btn-small" href="#share"><i class="icon-user"></i></a>
+						<label class="checkbox"><input type="checkbox" checked="checked"> Keep unread</label>
+						<a class="pull-right" href="#more"><i class="icon-chevron-down"></i> More</a>
+						<div class="clearfix"></div>
+					</div>  
+					<div class="item-more">
+						<a href="#email-article"><i class="icon-envelope"></i> Email</a>
+						<a href="#add-tags"><i class="icon-tags"></i> Add tags</a>
+					</div>   
+				</div> 
 	   		</div>
 		</li>
 		<li class="load-more">
-  			<div>
-  				<p><a href="feed-more.html"><strong>Load more items...</strong></a></p>
-  				<p>more than 15 items</p>
+  			<div ng-show="!loading">
+  				<p><a ng-click="loadMore($event)" href="#"><strong>Load more items...</strong></a></p>
+  				<p ng-show="nextFetch == 15">more than {{ nextFetch }} items</p>
+  				<p ng-show="nextFetch < 15">{{ nextFetch }} items</p>
+  				<p ng-show="nextFetch == 0">no more items</p>
+  			</div>
+  			<div ng-show="loading">
+  				<img class="loading" alt="Loading indicator" src="img/loading.gif" /> Loading...
   			</div>
 		</li>
 	</ul>
 	<p class="list-action">
-		<a href="#">Mark these items are read</a>
+		<a href="#" ng-click="markAllAsRead($event)">Mark these items as read</a>
 	</p>
 
 </div>
