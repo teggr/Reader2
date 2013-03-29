@@ -1,5 +1,9 @@
 {
 	"nextFetch": "15",
+	"feed": {
+		"id" : "my-feed",
+		"title" : "The Verge - All Posts"
+	},
 	"items": [
 		{
 			"id" : "item1",

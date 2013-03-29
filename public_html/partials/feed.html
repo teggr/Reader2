@@ -50,7 +50,7 @@
 	   		</div>
 		</li>
 		<li class="load-more">
-  			<div ng-show="!loading">
+  			<div ng-hide="loading">
   				<p><a ng-click="loadMore($event)" href="#"><strong>Load more items...</strong></a></p>
   				<p ng-show="nextFetch == 15">more than {{ nextFetch }} items</p>
   				<p ng-show="nextFetch < 15">{{ nextFetch }} items</p>

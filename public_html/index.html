@@ -21,36 +21,67 @@
 <link rel="shortcut icon" href="ico/favicon.png">
 </head>
 
-<body>
+<body ng-controller="AppCtrl">
 
-	<header>
+	<header ng-controller="MenuCtrl">
 		<div class="navbar navbar-inverse navbar-fixed-top">
 			<div class="navbar-inner">
-				<div class="container">
+				<div class="container" ng-show="isActive('feeds')">
 					<a class="brand" href="#">Reader2</a>
 					<ul class="nav pull-right">
 						<li class="active">
-							<a href="#refresh"><i class="icon-repeat icon-white"></i> </a>
+							<a href="#refresh" ng-click="refresh($event)"><i class="icon-repeat icon-white"></i> </a>
 						</li>
 						<li class="dropdown">
 						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" > 
 						  	<i class="icon-th icon-white"></i> </a>
 						  <ul class="dropdown-menu">
 						    <!-- dropdown menu links -->
-						    <li><a href="#">Show all</a></li>
-						    <li><a href="#">Show updated</a></li>
+						    <li><a href="#show-all" ng-click="showAllFeeds($event)"><i ng-class=" { 'icon-ok' : preferences.showAll, 'icon-blank' : !preferences.showAll  }"></i> Show all</a></li>
+						    <li><a href="#show-updated" ng-click="showUpdatedFeeds($event)"><i ng-class=" { 'icon-ok' : !preferences.showAll, 'icon-blank' : preferences.showAll  }"></i> Show updated</a></li>
 						    <li><hr/></li>
-						    <li><a href="#">Add subscription</a></li>
+						    <li><a href="#/discovery">Add subscription</a></li>
 						  </ul>
 						</li>
 					</ul>
 				</div>
-				<!--/.nav -->
+				<!--/.feeds nav -->
+				<div class="container" ng-show="isActive('feeds/')">
+					<a class="brand" href="index.html">&laquo; Feeds</a>
+					<a class="brand" href="#">All items</a>
+					<ul class="nav pull-right">
+						<li class="dropdown">
+						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" > 
+						  	<i class="icon-th icon-white"></i> </a>
+						  <ul class="dropdown-menu with-icon">
+						    <!-- dropdown menu links -->
+						    <li><a href="#"><i class="icon-blank"></i> Show all</a></li>
+						    <li><a href="#"><i class="icon-ok"></i> Show new</a></li>
+						    <li><hr/></li>
+						    <li><a href="#"><i class="icon-blank"></i> Sort by newest</a></li>
+						    <li><a href="#"><i class="icon-ok"></i> Sort by oldest</a></li>
+						    <li><a href="#"><i class="icon-blank"></i> Sort by magic</a></li>
+						    <li><hr/></li>
+						    <li><a href="search.html"><i class="icon-blank"></i> Search</a></li>
+						    <li><hr/></li>
+						    <li><a href="#"><i class="icon-blank"></i> Mark all as read</a></li>
+						  </ul>
+						</li>
+					</ul>
+				</div>
+				<!--/.feed nav -->
 			</div>
 		</div>
 	</header>
 
-	<div ng-view></div>
+	<div ng-hide="loadingFeeds">
+		<div ng-view ></div>
+	</div>
+	<div ng-show="loadingFeeds">
+	 		<div ng-show="loadingFeeds">
+  				<img class="loading" alt="Loading indicator" src="img/loading.gif" /> Loading...
+  			</div>
+	</div>
 
 	<footer>
 
