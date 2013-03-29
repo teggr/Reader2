@@ -2,15 +2,13 @@
 
 /* Controllers */
 
-function AppCtrl($scope, $http) {
+function AppCtrl($scope, $http, preferencesService) {
 
 	$scope.loadingFeeds = false;
 	$scope.items = [];
 	$scope.feeds = [];
 	
-	$scope.preferences = {
-		showAll : true
-	};
+	$scope.preferences = preferencesService.preferences;
 	$scope.showAllFeeds = function($event) {
 		$scope.preferences.showAll = true;
 		$event.preventDefault();
@@ -34,7 +32,7 @@ function AppCtrl($scope, $http) {
 	};
 
 }
-AppCtrl.$inject = [ '$scope', '$http' ];
+AppCtrl.$inject = [ '$scope', '$http', 'preferencesService' ];
 
 function MenuCtrl($scope, $location) {
 
