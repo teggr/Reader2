@@ -50,6 +50,11 @@ footer p {
 	padding: 3px 10px;
 }
 
+/* ---- ANGULAR ---- */
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none;
+}
+
 /* ---- FEEDS PAGE ---- */
 
 .container {

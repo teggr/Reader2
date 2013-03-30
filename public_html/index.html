@@ -19,6 +19,10 @@
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="ico/apple-touch-icon-72-precomposed.png">
 <link rel="apple-touch-icon-precomposed" href="ico/apple-touch-icon-57-precomposed.png">
 <link rel="shortcut icon" href="ico/favicon.png">
+
+<!-- best results for ng-cloak -->
+<script src="lib/angular/angular.js"></script>
+
 </head>
 
 <body ng-controller="AppCtrl">
@@ -26,7 +30,7 @@
 	<header ng-controller="MenuCtrl">
 		<div class="navbar navbar-inverse navbar-fixed-top">
 			<div class="navbar-inner">
-				<div class="container" ng-show="isActive('feeds')">
+				<div ng-cloak class="container" ng-show="isActive('feeds')">
 					<a class="brand" href="#">Reader2</a>
 					<ul class="nav pull-right">
 						<li class="active">
@@ -46,7 +50,7 @@
 					</ul>
 				</div>
 				<!--/.feeds nav -->
-				<div class="container" ng-show="isActive('feeds/')">
+				<div ng-cloak class="container" ng-show="isActive('feeds/')">
 					<a class="brand" href="#/feeds">&laquo; Feeds</a>
 					<a class="brand" href="#">All items</a>
 					<ul class="nav pull-right">
@@ -74,13 +78,13 @@
 		</div>
 	</header>
 
-	<div ng-hide="loadingFeeds">
+	<div ng-cloak ng-hide="loadingFeeds">
 		<div ng-view ></div>
 	</div>
-	<div ng-show="loadingFeeds">
-	 		<div ng-show="loadingFeeds">
-  				<img class="loading" alt="Loading indicator" src="img/loading.gif" /> Loading...
-  			</div>
+	<div ng-cloak ng-show="loadingFeeds">
+		<div ng-show="loadingFeeds">
+  			<img class="loading" alt="Loading indicator" src="img/loading.gif" /> Loading...
+  		</div>
 	</div>
 
 	<footer>
@@ -97,7 +101,6 @@
 	
     <script src="lib/jquery/jquery-1.9.1.min.js"></script>
     <script src="lib/bootstrap/bootstrap.min.js"></script>
-    <script src="lib/angular/angular.js"></script>
     <script src="js/app.js"></script>
 	<script src="js/services.js"></script>
 	<script src="js/controllers.js"></script>
