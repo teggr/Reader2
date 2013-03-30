@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-function AppCtrl($scope, $http, preferences, feedService) {
+function AppCtrl($scope, preferences, feedService) {
 
 	$scope.loadingFeeds = false;
 	$scope.items = [];
@@ -28,7 +28,7 @@ function AppCtrl($scope, $http, preferences, feedService) {
 	
 	$scope.showAllItems = function($event) {
 		$scope.preferences.showAllItems = true;
-		$scope.feedService.loadItems($scope,"all-items")
+		$scope.feedService.loadItems($scope,"all-items");
 		$event.preventDefault();
 	};
 
@@ -84,7 +84,7 @@ function AppCtrl($scope, $http, preferences, feedService) {
 	};
 
 }
-AppCtrl.$inject = [ '$scope', '$http', 'preferences', 'feedService' ];
+AppCtrl.$inject = [ '$scope', 'preferences', 'feedService' ];
 
 function MenuCtrl($scope, $location) {
 
@@ -104,15 +104,17 @@ function DiscoveryCtrl($scope) {
 }
 DiscoveryCtrl.$inject = [ '$scope' ];
 
-function FeedsCtrl($scope, $http) {
-	$scope.feedService.loadFeeds($scope);
+function FeedsCtrl($scope) {
+	if($scope.feeds.length==0) {
+		$scope.feedService.loadFeeds($scope);
+	}
 	$scope.feedFilter = function(feed) {
 		return (feed.count && feed.count > 0) || $scope.preferences.showAllFeeds;
 	};
 }
-FeedsCtrl.$inject = [ '$scope', '$http' ];
+FeedsCtrl.$inject = [ '$scope' ];
 
-function FeedCtrl($scope, $http, $routeParams) {
+function FeedCtrl($scope, $routeParams) {
 
 	$scope.loading = false;
 	$scope.currentItem = null;
@@ -168,4 +170,9 @@ function FeedCtrl($scope, $http, $routeParams) {
 	
 
 }
-FeedsCtrl.$inject = [ '$scope', '$http', '$routeParams' ];
+FeedsCtrl.$inject = [ '$scope', '$routeParams' ];
+
+function SettingsCtrl($scope) {
+	
+}
+SettingsCtrl.$inject = [ '$scope' ];

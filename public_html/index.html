@@ -74,6 +74,11 @@
 					</ul>
 				</div>
 				<!--/.feed nav -->
+				<div ng-cloak class="container" ng-show="isActive('settings')">
+					<a class="brand" href="#/feeds">&laquo; Feeds</a>
+					<a class="brand" href="#">Settings</a>
+				</div>
+				<!--/.settings nav -->
 			</div>
 		</div>
 	</header>
@@ -90,7 +95,7 @@
 	<footer>
 
 		<p>
-			robin@tegg.me.uk <a href="settings.html">Settings</a> <a
+			robin@tegg.me.uk <a href="#/settings">Settings</a> <a
 				href="#/sign-out">Sign out</a>
 		</p>
 		<p>

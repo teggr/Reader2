@@ -1,0 +1,25 @@
+<div id="settings" class="container">
+	<h6>Start page</h6>
+	<select ng-model="preferences.startPage">
+		<option value="1">"Feeds" list</option>
+		<option value="2" selected="selected">All items</option>
+		<option value="3">Starred items</option>
+		<option value="4">Folders and Tags</option>
+	</select>
+	<hr />
+	<h6>Outgoing links</h6>
+	<label class="checkbox"> <input type="checkbox"> Reformat linked web
+		pages for mobile browsers
+	</label> <label class="checkbox"> <input
+		ng-model="preferences.openLinksInNewWindow" type="checkbox"
+		checked="checked"> Opens links in a new window
+	</label>
+	<hr />
+	<h6>Items per page</h6>
+	<select ng-model="preferences.itemsPerPage">
+		<option selected="selected">15</option>
+		<option>25</option>
+		<option>50</option>
+		<option>100</option>
+	</select>
+</div>
