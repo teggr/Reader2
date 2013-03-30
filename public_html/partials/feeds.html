@@ -3,7 +3,7 @@
 		<li ng-show="{{ feeds.length == 0 }}">
 			There are no new items
 		</li>
-		<li ng-repeat="feed in feeds" ng-show="(feed.count && feed.count > 0) || preferences.showAll">
+		<li ng-repeat="feed in feeds | filter:feedFilter">
 			<a href="#/feeds/{{ feed.id }}"><i class="{{ feed.image }}" ng-class='{"icon-blank" : feed.image == null}'></i>{{ feed.title }}</a> 
 			<span class="count pull-right">{{ feed.count }}</span>
 		</li>

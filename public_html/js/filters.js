@@ -3,8 +3,13 @@
 /* Filters */
 
 angular.module('myApp.filters', []).
-  filter('interpolate', ['version', function(version) {
-    return function(text) {
-      return String(text).replace(/\%VERSION\%/mg, version);
-    }
-  }]);
+  filter('menuItemSelectedClass',function(){
+	  return function(input){
+		  return input ? "icon-ok" : "icon-blank"; 
+	  };
+  }).
+  filter('starredItemIcon',function(){
+	  return function(item){
+		  return item.starred ? "icon-star" : "icon-star-empty"; 
+	  };
+  });

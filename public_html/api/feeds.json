@@ -1,28 +1,30 @@
-[
-	{
-		"id" : "all-items",
-		"title" : "All items",
-		"image" : "icon-folder-open",
-		"count" : "2"
-	},
-	{
-		"id" : "read-items",
-		"title" : "Read items"
-	},
-	{
-		"id" : "starred-items",
-		"title" : "Starred items",
-		"image" : "icon-star"
-	},
-	{
-		"id" : "recommended-items",
-		"title" : "Recommended items",
-		"image" : "icon-list-alt"
-	},
-	{
-		"id" : "the-verge-all-posts",
-		"title" : "The Verge - All Posts",
-		"image" : "icon-list-alt",
-		"count" : "2"
-	}
-]
+{
+	"feeds" : [
+		{
+			"id" : "all-items",
+			"title" : "All items",
+			"image" : "icon-folder-open",
+			"count" : "2"
+		},
+		{
+			"id" : "read-items",
+			"title" : "Read items"
+		},
+		{
+			"id" : "starred-items",
+			"title" : "Starred items",
+			"image" : "icon-star"
+		},
+		{
+			"id" : "recommended-items",
+			"title" : "Recommended items",
+			"image" : "icon-list-alt"
+		},
+		{
+			"id" : "the-verge-all-posts",
+			"title" : "The Verge - All Posts",
+			"image" : "icon-list-alt",
+			"count" : "2"
+		}
+	]
+}

@@ -5,11 +5,9 @@
 
 // Demonstrate how to register services
 // In this case it is a simple value service.
-angular.module('myApp.services', []). factory('preferencesService', function(){
-	var priv = {
-			showAll : true
-	};
-	return {
-		preferences : priv
-	};
-});
+angular.module('myApp.services', []). value('preferences', {
+		showAllFeeds : true,
+		showAllItems : true,
+		sortItemsBy : 1
+	}
+);

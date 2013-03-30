@@ -41,8 +41,8 @@
 						  	<i class="icon-th icon-white"></i> </a>
 						  <ul class="dropdown-menu">
 						    <!-- dropdown menu links -->
-						    <li><a href="#show-all" ng-click="showAllFeeds($event)"><i ng-class=" { 'icon-ok' : preferences.showAll, 'icon-blank' : !preferences.showAll  }"></i> Show all</a></li>
-						    <li><a href="#show-updated" ng-click="showUpdatedFeeds($event)"><i ng-class=" { 'icon-ok' : !preferences.showAll, 'icon-blank' : preferences.showAll  }"></i> Show updated</a></li>
+						    <li><a href="#show-all" ng-click="showAllFeeds($event)"><i class="{{ preferences.showAllFeeds | menuItemSelectedClass }}"></i> Show all</a></li>
+						    <li><a href="#show-updated" ng-click="showUpdatedFeeds($event)"><i class="{{ !preferences.showAllFeeds | menuItemSelectedClass }}"></i> Show updated</a></li>
 						    <li><hr/></li>
 						    <li><a href="#/discovery">Add subscription</a></li>
 						  </ul>
@@ -52,23 +52,23 @@
 				<!--/.feeds nav -->
 				<div ng-cloak class="container" ng-show="isActive('feeds/')">
 					<a class="brand" href="#/feeds">&laquo; Feeds</a>
-					<a class="brand" href="#">All items</a>
+					<a class="brand" href="#">{{feed.title}}</a>
 					<ul class="nav pull-right">
 						<li class="dropdown">
 						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" > 
 						  	<i class="icon-th icon-white"></i> </a>
 						  <ul class="dropdown-menu with-icon">
 						    <!-- dropdown menu links -->
-						    <li><a href="#"><i class="icon-blank"></i> Show all</a></li>
-						    <li><a href="#"><i class="icon-ok"></i> Show new</a></li>
+						    <li><a href="#" ng-click="showAllItems($event)"><i class="{{ preferences.showAllItems | menuItemSelectedClass }}"></i> Show all</a></li>
+						    <li><a href="#" ng-click="showUpdatedItems($event)"><i class="{{ !preferences.showAllItems | menuItemSelectedClass }}"></i> Show new</a></li>
 						    <li><hr/></li>
-						    <li><a href="#"><i class="icon-blank"></i> Sort by newest</a></li>
-						    <li><a href="#"><i class="icon-ok"></i> Sort by oldest</a></li>
-						    <li><a href="#"><i class="icon-blank"></i> Sort by magic</a></li>
+						    <li><a href="#" ng-click="sortItemsByNewest($event)"><i class="{{ preferences.sortItemsBy == 0 | menuItemSelectedClass }}"></i> Sort by newest</a></li>
+						    <li><a href="#" ng-click="sortItemsByOldest($event)"><i class="{{ preferences.sortItemsBy == 1 | menuItemSelectedClass }}"></i> Sort by oldest</a></li>
+						    <li><a href="#" ng-click="sortItemsByMagic($event)"><i class="{{ preferences.sortItemsBy == 2 | menuItemSelectedClass }}"></i> Sort by magic</a></li>
 						    <li><hr/></li>
-						    <li><a href="search.html"><i class="icon-blank"></i> Search</a></li>
+						    <li><a href="#" ng-click="showSearch($event)"><i class="icon-blank"></i> Search</a></li>
 						    <li><hr/></li>
-						    <li><a href="#"><i class="icon-blank"></i> Mark all as read</a></li>
+						    <li><a href="#" ng-click="markAllAsRead($event)"><i class="icon-blank"></i> Mark all as read</a></li>
 						  </ul>
 						</li>
 					</ul>
