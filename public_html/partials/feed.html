@@ -56,7 +56,10 @@
 	   		</div>
 		</li>
 		<li class="load-more">
-  			<div ng-hide="loading">
+  			<div ng-show="items.length == 0">
+  				There are no items to read
+  			</div>
+  			<div ng-show="!loading && items.length > 0">
   				<p><a ng-click="loadMore($event)" href="#"><strong>Load more items...</strong></a></p>
   				<p ng-show="nextFetch == 15">more than {{ nextFetch }} items</p>
   				<p ng-show="nextFetch < 15">{{ nextFetch }} items</p>
@@ -67,7 +70,7 @@
   			</div>
 		</li>
 	</ul>
-	<p class="list-action">
+	<p ng-show="items.length > 0" class="list-action">
 		<a href="#" ng-click="markAllAsRead($event)">Mark these items as read</a>
 	</p>
 

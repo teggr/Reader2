@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-function AppCtrl($scope, $http, preferences) {
+function AppCtrl($scope, $http, preferences, feedService) {
 
 	$scope.loadingFeeds = false;
 	$scope.items = [];
@@ -14,6 +14,8 @@ function AppCtrl($scope, $http, preferences) {
 	$scope.feed = {};
 	
 	$scope.preferences = preferences;
+	$scope.feedService = feedService;
+	
 	$scope.showAllFeeds = function($event) {
 		$scope.preferences.showAllFeeds = true;
 		$event.preventDefault();
@@ -26,27 +28,13 @@ function AppCtrl($scope, $http, preferences) {
 	
 	$scope.showAllItems = function($event) {
 		$scope.preferences.showAllItems = true;
-		$http.get('api/items.json').success(function(data) {
-			$scope.items.length = 0;
-			angular.forEach(data.items, function(value, key) {
-				this.push(value);
-			}, $scope.items);
-			angular.copy( data.feed, $scope.feed );
-			$scope.nextFetch = data.nextFetch;
-		});
+		$scope.feedService.loadItems($scope,"all-items")
 		$event.preventDefault();
 	};
 
 	$scope.showUpdatedItems = function($event) {
 		$scope.preferences.showAllItems = false;
-		$http.get('api/updated-items.json').success(function(data) {
-			$scope.items.length = 0;
-			angular.forEach(data.items, function(value, key) {
-				this.push(value);
-			}, $scope.items);
-			angular.copy( data.feed, $scope.feed );
-			$scope.nextFetch = data.nextFetch;
-		});
+		$scope.feedService.loadItems($scope,"updated-items");
 		$event.preventDefault();
 	};
 	
@@ -66,16 +54,7 @@ function AppCtrl($scope, $http, preferences) {
 	};
 	
 	$scope.refresh = function($event) {
-		$scope.loadingFeeds = true;
-		$http.get('api/feeds.json').success(function(data) {
-			$scope.feeds.length = 0;
-			angular.forEach(data.feeds, function(value, key) {
-				this.push(value);
-			}, $scope.feeds);
-			$scope.loadingFeeds = false;
-		}).error(function(){
-			$scope.loadingFeeds = false;
-		});
+		$scope.feedService.loadFeeds($scope);
 		$event.preventDefault();
 	};
 	
@@ -95,14 +74,7 @@ function AppCtrl($scope, $http, preferences) {
 	
 	$scope.search = function($event) {
 		$scope.search.show = false;
-		$http.get('api/search-items.json').success(function(data) {
-			$scope.items.length = 0;
-			angular.forEach(data.items, function(value, key) {
-				this.push(value);
-			}, $scope.items);
-			angular.copy( data.feed, $scope.feed );
-			$scope.nextFetch = data.nextFetch;
-		});
+		$scope.feedService.loadItems($scope,"search-items");
 		$event.preventDefault();
 	};
 	
@@ -112,7 +84,7 @@ function AppCtrl($scope, $http, preferences) {
 	};
 
 }
-AppCtrl.$inject = [ '$scope', '$http', 'preferences' ];
+AppCtrl.$inject = [ '$scope', '$http', 'preferences', 'feedService' ];
 
 function MenuCtrl($scope, $location) {
 
@@ -133,12 +105,7 @@ function DiscoveryCtrl($scope) {
 DiscoveryCtrl.$inject = [ '$scope' ];
 
 function FeedsCtrl($scope, $http) {
-	$http.get('api/feeds.json').success(function(data) {
-		$scope.feeds.length = 0;
-		angular.forEach(data.feeds, function(value, key) {
-			this.push(value);
-		}, $scope.feeds);
-	});
+	$scope.feedService.loadFeeds($scope);
 	$scope.feedFilter = function(feed) {
 		return (feed.count && feed.count > 0) || $scope.preferences.showAllFeeds;
 	};
@@ -150,15 +117,7 @@ function FeedCtrl($scope, $http, $routeParams) {
 	$scope.loading = false;
 	$scope.currentItem = null;
 
-	$http.get('api/items.json').success(function(data) {
-		$scope.items.length = 0;
-		angular.forEach(data.items, function(value, key) {
-			this.push(value);
-		}, $scope.items);
-		angular.copy( data.feed, $scope.feed );
-		$scope.nextFetch = data.nextFetch;
-	});
-
+	$scope.feedService.loadItems($scope,$routeParams.id);
 	
 	$scope.toggleStar = function($event, item) {
 		item.starred = !item.starred;
@@ -194,16 +153,7 @@ function FeedCtrl($scope, $http, $routeParams) {
 
 	$scope.loadMore = function($event) {
 		$scope.loading = true;
-		$http.get('api/items.json').success(function(data) {
-			angular.forEach(data.items, function(value, key) {
-				this.push(value);
-			}, $scope.items);
-			$scope.nextFetch = data.nextFetch;
-			angular.copy( data.feed, $scope.feed );
-			$scope.loading = false;
-		}).error(function() {
-			$scope.loading = false;
-		});
+		$scope.feedService.loadItems($scope,$routeParams.id);
 		$event.preventDefault();
 	};
 	
