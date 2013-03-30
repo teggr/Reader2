@@ -43,3 +43,11 @@ services.factory("feedService", [ "$http", function($http) {
 		}
 	};
 } ]);
+
+services.factory("shareService", [ "$http", function($http) {
+	return {
+		share : function(item) {
+			console.log("Sharing",item);
+		}
+	};
+} ]);

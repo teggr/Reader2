@@ -34,15 +34,15 @@
 					<a class="brand" href="#">Reader2</a>
 					<ul class="nav pull-right">
 						<li class="active">
-							<a href="#refresh" ng-click="refresh($event)"><i class="icon-repeat icon-white"></i> </a>
+							<a href="#refresh" ng-click="refresh()" link-button><i class="icon-repeat icon-white"></i> </a>
 						</li>
 						<li class="dropdown">
 						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" > 
 						  	<i class="icon-th icon-white"></i> </a>
 						  <ul class="dropdown-menu">
 						    <!-- dropdown menu links -->
-						    <li><a href="#show-all" ng-click="showAllFeeds($event)"><i class="{{ preferences.showAllFeeds | menuItemSelectedClass }}"></i> Show all</a></li>
-						    <li><a href="#show-updated" ng-click="showUpdatedFeeds($event)"><i class="{{ !preferences.showAllFeeds | menuItemSelectedClass }}"></i> Show updated</a></li>
+						    <li><a href="#show-all" ng-click="showAllFeeds()" link-button><i class="{{ preferences.showAllFeeds | menuItemSelectedClass }}"></i> Show all</a></li>
+						    <li><a href="#show-updated" ng-click="showUpdatedFeeds()" link-button><i class="{{ !preferences.showAllFeeds | menuItemSelectedClass }}"></i> Show updated</a></li>
 						    <li><hr/></li>
 						    <li><a href="#/discovery">Add subscription</a></li>
 						  </ul>
@@ -59,16 +59,16 @@
 						  	<i class="icon-th icon-white"></i> </a>
 						  <ul class="dropdown-menu with-icon">
 						    <!-- dropdown menu links -->
-						    <li><a href="#" ng-click="showAllItems($event)"><i class="{{ preferences.showAllItems | menuItemSelectedClass }}"></i> Show all</a></li>
-						    <li><a href="#" ng-click="showUpdatedItems($event)"><i class="{{ !preferences.showAllItems | menuItemSelectedClass }}"></i> Show new</a></li>
+						    <li><a href="#" ng-click="showAllItems()" link-button><i class="{{ preferences.showAllItems | menuItemSelectedClass }}"></i> Show all</a></li>
+						    <li><a href="#" ng-click="showUpdatedItems()" link-button><i class="{{ !preferences.showAllItems | menuItemSelectedClass }}"></i> Show new</a></li>
 						    <li><hr/></li>
-						    <li><a href="#" ng-click="sortItemsByNewest($event)"><i class="{{ preferences.sortItemsBy == 0 | menuItemSelectedClass }}"></i> Sort by newest</a></li>
-						    <li><a href="#" ng-click="sortItemsByOldest($event)"><i class="{{ preferences.sortItemsBy == 1 | menuItemSelectedClass }}"></i> Sort by oldest</a></li>
-						    <li><a href="#" ng-click="sortItemsByMagic($event)"><i class="{{ preferences.sortItemsBy == 2 | menuItemSelectedClass }}"></i> Sort by magic</a></li>
+						    <li><a href="#" ng-click="sortItemsByNewest()" link-button><i class="{{ preferences.sortItemsBy == 0 | menuItemSelectedClass }}"></i> Sort by newest</a></li>
+						    <li><a href="#" ng-click="sortItemsByOldest()" link-button><i class="{{ preferences.sortItemsBy == 1 | menuItemSelectedClass }}"></i> Sort by oldest</a></li>
+						    <li><a href="#" ng-click="sortItemsByMagic()" link-button><i class="{{ preferences.sortItemsBy == 2 | menuItemSelectedClass }}"></i> Sort by magic</a></li>
 						    <li><hr/></li>
-						    <li><a href="#" ng-click="showSearch($event)"><i class="icon-blank"></i> Search</a></li>
+						    <li><a href="#" ng-click="showSearch()" link-button><i class="icon-blank"></i> Search</a></li>
 						    <li><hr/></li>
-						    <li><a href="#" ng-click="markAllAsRead($event)"><i class="icon-blank"></i> Mark all as read</a></li>
+						    <li><a href="#" ng-click="markAllAsRead()" link-button><i class="icon-blank"></i> Mark all as read</a></li>
 						  </ul>
 						</li>
 					</ul>

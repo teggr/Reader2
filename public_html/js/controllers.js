@@ -9,78 +9,66 @@ function AppCtrl($scope, preferences, feedService) {
 	$scope.feeds = [];
 	$scope.nextFetch = null;
 	$scope.search = {
-		show: false
+		show : false
 	};
 	$scope.feed = {};
-	
+
 	$scope.preferences = preferences;
 	$scope.feedService = feedService;
-	
-	$scope.showAllFeeds = function($event) {
+
+	$scope.showAllFeeds = function() {
 		$scope.preferences.showAllFeeds = true;
-		$event.preventDefault();
 	};
 
-	$scope.showUpdatedFeeds = function($event) {
+	$scope.showUpdatedFeeds = function() {
 		$scope.preferences.showAllFeeds = false;
-		$event.preventDefault();
-	};
-	
-	$scope.showAllItems = function($event) {
-		$scope.preferences.showAllItems = true;
-		$scope.feedService.loadItems($scope,"all-items");
-		$event.preventDefault();
 	};
 
-	$scope.showUpdatedItems = function($event) {
+	$scope.showAllItems = function() {
+		$scope.preferences.showAllItems = true;
+		$scope.feedService.loadItems($scope, "all-items");
+	};
+
+	$scope.showUpdatedItems = function() {
 		$scope.preferences.showAllItems = false;
-		$scope.feedService.loadItems($scope,"updated-items");
-		$event.preventDefault();
+		$scope.feedService.loadItems($scope, "updated-items");
 	};
-	
-	$scope.sortItemsByNewest = function($event) {
+
+	$scope.sortItemsByNewest = function() {
 		$scope.preferences.sortItemsBy = 0;
-		$event.preventDefault();
 	};
-	
-	$scope.sortItemsByOldest = function($event) {
+
+	$scope.sortItemsByOldest = function() {
 		$scope.preferences.sortItemsBy = 1;
-		$event.preventDefault();
 	};
-	
-	$scope.sortItemsByMagic = function($event) {
+
+	$scope.sortItemsByMagic = function() {
 		$scope.preferences.sortItemsBy = 2;
-		$event.preventDefault();
 	};
-	
-	$scope.refresh = function($event) {
+
+	$scope.refresh = function() {
 		$scope.feedService.loadFeeds($scope);
-		$event.preventDefault();
 	};
-	
-	$scope.markAllAsRead = function($event) {
+
+	$scope.markAllAsRead = function() {
 		angular.forEach($scope.items, function(value, key) {
 			if (!value.read) {
 				value.read = true;
 			}
 		});
-		$event.preventDefault();
 	};
-	
-	$scope.showSearch = function($event) {
+
+	$scope.showSearch = function() {
 		$scope.search.show = true;
-		$event.preventDefault();
 	};
-	
-	$scope.search = function($event) {
+
+	$scope.search = function() {
 		$scope.search.show = false;
-		$scope.feedService.loadItems($scope,"search-items");
-		$event.preventDefault();
+		$scope.feedService.loadItems($scope, "search-items");
 	};
-	
-	$scope.cancelSearch = function($event) {
+
+	$scope.cancelSearch = function() {
 		$scope.search.show = false;
-		$event.preventDefault();
 	};
 
 }
@@ -100,16 +88,16 @@ MenuCtrl.$inject = [ '$scope', '$location' ];
 
 function DiscoveryCtrl($scope) {
 
-
 }
 DiscoveryCtrl.$inject = [ '$scope' ];
 
 function FeedsCtrl($scope) {
-	if($scope.feeds.length==0) {
+	if ($scope.feeds.length == 0) {
 		$scope.feedService.loadFeeds($scope);
 	}
 	$scope.feedFilter = function(feed) {
-		return (feed.count && feed.count > 0) || $scope.preferences.showAllFeeds;
+		return (feed.count && feed.count > 0)
+				|| $scope.preferences.showAllFeeds;
 	};
 }
 FeedsCtrl.$inject = [ '$scope' ];
@@ -119,60 +107,60 @@ function FeedCtrl($scope, $routeParams) {
 	$scope.loading = false;
 	$scope.currentItem = null;
 
-	$scope.feedService.loadItems($scope,$routeParams.id);
-	
-	$scope.toggleStar = function($event, item) {
+	$scope.feedService.loadItems($scope, $routeParams.id);
+
+	$scope.toggleStar = function(item) {
 		item.starred = !item.starred;
-		$event.preventDefault();
-		$event.stopPropagation();
 	};
 
-	$scope.expand = function($event, item) {
+	$scope.expand = function(item) {
 		if ($scope.currentItem != null) {
 			$scope.currentItem.expanded = false;
 		}
 		$scope.currentItem = item;
 		$scope.currentItem.expanded = true;
 		$scope.currentItem.read = true;
-		$event.preventDefault();
 	};
 
-	$scope.collapse = function($event, item) {
+	$scope.collapse = function(item) {
 		item.expanded = false;
 		$scope.currentItem = null;
-		$event.preventDefault();
 	};
 
-	$scope.nextItem = function($event, item, $index) {
+	$scope.nextItem = function(item, $index) {
 		if ($scope.currentItem != null) {
 			$scope.currentItem.expanded = false;
 		}
 		$scope.currentItem = $scope.items[$index + 1];
 		$scope.currentItem.expanded = true;
 		$scope.currentItem.read = true;
-		$event.preventDefault();
 	};
 
-	$scope.loadMore = function($event) {
+	$scope.loadMore = function() {
 		$scope.loading = true;
-		$scope.feedService.loadItems($scope,$routeParams.id);
-		$event.preventDefault();
+		$scope.feedService.loadItems($scope, $routeParams.id);
 	};
-	
+
 	$scope.sortItemsBy = function(item) {
-		if( $scope.preferences.sortItemsBy == 0 ) {
+		if ($scope.preferences.sortItemsBy == 0) {
 			return "-publishTime";
 		} else {
-			return "+publishTime";			
+			return "+publishTime";
 		}
 	};
-
-	
 
 }
 FeedsCtrl.$inject = [ '$scope', '$routeParams' ];
 
+function FooterCtrl($scope, shareService) {
+	$scope.shareService = shareService;
+	$scope.shareItem = function(item) {
+		$scope.shareService.share(item);
+	};
+}
+FooterCtrl.$inject = [ '$scope', 'shareService' ];
+
 function SettingsCtrl($scope) {
-	
+
 }
 SettingsCtrl.$inject = [ '$scope' ];

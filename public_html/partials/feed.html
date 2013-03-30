@@ -1,16 +1,16 @@
 <div id="feed" class="container">
 	<div ng-show="search.show">
 		<form class="form-inline search">
-			<a class="btn btn-small" href="#" ng-click="cancelSearch($event)" >Cancel</a>
+			<a class="btn btn-small" href="#" ng-click="cancelSearch()" link-button>Cancel</a>
 			<input type="text">
-			<a class="btn btn-small" href="#" ng-click="search($event)"><i class="icon-search"></i> </a>
+			<a class="btn btn-small" href="#" ng-click="search()" link-button><i class="icon-search"></i> </a>
 		</form>
 	</div>
 	<ul class="items">
 		<li ng-repeat="item in items | orderBy:sortItemsBy()" scroll-if="item.expanded">
-			<div ng-class="{ read : item.read }" class="item-collapsed" ng-show="!item.expanded" ng-click="expand($event,item)">
+			<div ng-class="{ read : item.read }" class="item-collapsed" ng-show="!item.expanded" ng-click="expand(item)" link-button>
 				<div class="item-star">
-					<a class="star" href="#star" ng-click="toggleStar($event,item)">
+					<a class="star" href="#star" ng-click="toggleStar(item)" inner-link-button>
 						<i class="{{ item | starredItemIcon }}"></i>
 					</a>
 				</div>
@@ -21,12 +21,12 @@
 	   		</div>
 	   		<div ng-class="{ read : item.read }" class="item-expanded" ng-show="item.expanded">
 	   			<div class="item-header">
-					<a class="pull-left" href="#collapse" ng-click="collapse($event,item)"><i class="icon-align-justify"></i> Collapse</a>
-					<a ng-show="!$last" class="pull-right" href="#next" ng-click="nextItem($event,item,$index)"><i class="icon-arrow-down"></i> Next item</a>
+					<a class="pull-left" href="#collapse" ng-click="collapse(item)" link-button><i class="icon-align-justify"></i> Collapse</a>
+					<a ng-show="!$last" class="pull-right" href="#next" ng-click="nextItem(item,$index)" link-button><i class="icon-arrow-down"></i> Next item</a>
 					<div class="clearfix"></div>
 				</div>
 				<div class="item-title">
-					<div class="item-star"><a class="star" href="#star" ng-click="toggleStar($event,item)">
+					<div class="item-star"><a class="star" href="#star" ng-click="toggleStar(item)" inner-link-button>
 						<i class="{{ item | starredItemIcon }}"></i></a>
 					</div>
 					<div class="item-text">
@@ -41,10 +41,10 @@
 					<div class="item-content" ng-bind-html-unsafe="item.content">
 					</div>
 				</div>  
-				<div class="item-footer">
+				<div class="item-footer" ng-controller="FooterCtrl">
 					<div class="item-footer">
-						<a class="btn btn-small" href="#share"><i class="icon-user"></i></a>
-						<label class="checkbox"><input type="checkbox" checked="checked"> Keep unread</label>
+						<a class="btn btn-small" href="#" ng-click="shareItem(item)" link-button><i class="icon-user"></i></a>
+						<label class="checkbox"><input type="checkbox" inverted ng-model="item.read"> Keep unread</label>
 						<a class="pull-right" href="#more"><i class="icon-chevron-down"></i> More</a>
 						<div class="clearfix"></div>
 					</div>  
@@ -60,7 +60,7 @@
   				There are no items to read
   			</div>
   			<div ng-show="!loading && items.length > 0">
-  				<p><a ng-click="loadMore($event)" href="#"><strong>Load more items...</strong></a></p>
+  				<p><a ng-click="loadMore()" link-button href="#"><strong>Load more items...</strong></a></p>
   				<p ng-show="nextFetch == 15">more than {{ nextFetch }} items</p>
   				<p ng-show="nextFetch < 15">{{ nextFetch }} items</p>
   				<p ng-show="nextFetch == 0">no more items</p>
@@ -71,7 +71,7 @@
 		</li>
 	</ul>
 	<p ng-show="items.length > 0" class="list-action">
-		<a href="#" ng-click="markAllAsRead($event)">Mark these items as read</a>
+		<a href="#" ng-click="markAllAsRead()" link-button>Mark these items as read</a>
 	</p>
 
 </div>
